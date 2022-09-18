@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Chart from './components/Chart';
 import { timeFrames } from './timeFrames';
 import '../App.css';
 import config from '../config/config';
 import useTickerData from '../services/useTickerData';
 
+// interface IState {
+//   tickerData: {
+//     data: any;
+//     loading: boolean;
+//     error: ApolloError;
+//   },
+// };
+
+// export type TTickerDataResponse = {
+//   data: any;
+//   loading: boolean;
+//   error: any;
+// };
+
 const App = () => {
   const { ticker, tickerName } = config;
-  const [timeFrame, setTimeFrame] = useState(timeFrames[0].value);
+  const [timeFrame, setTimeFrame] = useState<string>(timeFrames[0].value);
   const { data, loading, error } = useTickerData(ticker, timeFrame);
 
   return <div className="App">
@@ -35,9 +49,8 @@ const App = () => {
                 </Button>
               })}
               <Chart
-                timeFrame={timeFrame}
                 title={`Market data for ${ticker} - ${timeFrame}`}
-                serielabel={ticker}
+                serieLabel={ticker}
                 data={data}
               />
             </div>

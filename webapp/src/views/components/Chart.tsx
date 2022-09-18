@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Chart as GChart } from 'react-google-charts';
 
-const Chart = ({ title, serielabel, data }) => {
-  const [chartData, setChartData] = useState(null);
+interface IProps {
+  title: string,
+  serieLabel: string,
+  data: {
+    marketData: Array<any>,
+  },
+};
+
+const Chart: React.FC<IProps> = ({ title, serieLabel, data }) => {
+  const [chartData, setChartData] = useState<any>(null);
   const options = {
     title,
     curveType: 'function',
@@ -17,7 +25,7 @@ const Chart = ({ title, serielabel, data }) => {
       ];
     });
     setChartData([
-      ['', serielabel],
+      ['', serieLabel],
       ...newData || [],
     ]);
   }, [data]);
