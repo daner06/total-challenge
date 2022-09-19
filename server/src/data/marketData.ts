@@ -1,4 +1,4 @@
-const marketData = [{
+const marketData: { ticker: string, timeFrame: string, yLabel: string, value: number }[] = [{
     ticker: 'TTL',
     timeFrame: '5Y',
     yLabel: '2021',

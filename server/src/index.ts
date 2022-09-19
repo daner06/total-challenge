@@ -2,7 +2,6 @@ import { ApolloServer, gql } from 'apollo-server';
 import {
   ApolloServerPluginLandingPageGraphQLPlayground,
 } from 'apollo-server-core';
-
 import marketData from './data/marketData';
 
 const typeDefs = gql`
@@ -14,22 +13,21 @@ const typeDefs = gql`
   }
 
   type Query {
+    marketDataAll: [marketDataItem]
     marketData(timeFrame: String): [marketDataItem]
   }
 `;
 
 const resolvers = {
   Query: {
-    marketData: () => marketData,
-    marketData: (parent, args, context, info) => {
+    marketDataAll: () => marketData,
+    marketData: (parent: any, args: any) => {
       const { timeFrame } = args;
       return marketData.filter((item) => item.timeFrame === timeFrame);
     },
   },
 };
 
-// 'https://query1.finance.yahoo.com/v8/finance/chart/TTE',
-// 'https://random-data-api.com/api/v2/users'
 const server = new ApolloServer({
   typeDefs,
   resolvers,
