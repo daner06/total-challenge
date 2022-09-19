@@ -12,10 +12,7 @@ code {
     monospace;
 }
 
-.frame-selector {
-  display: flex;
-}
-
-.time-frame {
-  margin: 12px;
+.time-frame-button {
+  margin: 15px;
+  width: 80px;
 }

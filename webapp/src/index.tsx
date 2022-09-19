@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './views/App';
 import reportWebVitals from './reportWebVitals';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   HttpLink,
 } from '@apollo/client';
-
 import config from './config/config';
 
 const link = new HttpLink({ uri: config.graphQlUri })
@@ -20,7 +19,9 @@ const client = new ApolloClient({
   cache,
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>

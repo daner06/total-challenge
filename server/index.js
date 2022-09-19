@@ -21,6 +21,10 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     marketData: () => marketData,
+    marketData: (parent, args, context, info) => {
+      const { timeFrame } = args;
+      return marketData.filter((item) => item.timeFrame === timeFrame);
+    },
   },
 };
 

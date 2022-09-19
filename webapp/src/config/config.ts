@@ -1,7 +1,7 @@
 const config = {
   graphQlUri: 'http://localhost:4000',
   ticker: 'TTE',
-  pollInterval: 30000,
-};
+  tickerName: 'TotalEnergies',
+} as const;
 
 export default config;

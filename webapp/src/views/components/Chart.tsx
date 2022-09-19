@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Chart as GChart } from 'react-google-charts';
 
-const Chart = ({ title, serielabel, data }) => {
-  const [chartData, setChartData] = useState(null);
+interface ChartProps {
+  title: string,
+  serieLabel: string,
+  data: {
+    marketData: Array<any>,
+  },
+};
+
+const Chart = ({ title, serieLabel, data }: ChartProps): JSX.Element => {
+  const [chartData, setChartData] = useState<any>(null);
   const options = {
     title,
     curveType: 'function',
     legend: { position: 'bottom' },
-  };
+  } as const;
 
   useEffect(() => {
     const newData = data?.marketData?.map(d => {
@@ -17,10 +25,10 @@ const Chart = ({ title, serielabel, data }) => {
       ];
     });
     setChartData([
-      ['', serielabel],
+      ['', serieLabel],
       ...newData || [],
     ]);
-  }, [data]);
+  }, [data, serieLabel]);
 
   return <GChart
     chartType="LineChart"
