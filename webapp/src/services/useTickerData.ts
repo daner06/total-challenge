@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client';
 import { HISTORY_DATA } from './graphQL/queries';
 
-export type TTickerDataResponse = {
+type TickerData = {
   data: any;
   loading: boolean;
   error: any;
 };
 
-const useTickerData = (ticker: string, timeFrame: string): TTickerDataResponse => {
-  const { loading, error, data } = useQuery<TTickerDataResponse>(HISTORY_DATA, {
+const useTickerData = (ticker: string, timeFrame: string): TickerData => {
+  const { loading, error, data } = useQuery<TickerData>(HISTORY_DATA, {
     variables: { timeFrame },
   });
 

@@ -1,4 +1,4 @@
-export const timeFrames = [{
+const timeFrames = [{
   label: '5 years',
   value: '5Y',
 }, {
@@ -10,4 +10,6 @@ export const timeFrames = [{
 }, {
   label: '1 week',
   value: '1W',
-}];
+}] as const;
+
+export default timeFrames;

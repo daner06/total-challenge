@@ -1,27 +1,12 @@
-import React, { useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import { Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Container } from 'react-bootstrap';
 import Chart from './components/Chart';
-import { timeFrames } from './timeFrames';
-import '../App.css';
+import timeFrames from './timeFrames';
 import config from '../config/config';
 import useTickerData from '../services/useTickerData';
+import '../App.css';
 
-// interface IState {
-//   tickerData: {
-//     data: any;
-//     loading: boolean;
-//     error: ApolloError;
-//   },
-// };
-
-// export type TTickerDataResponse = {
-//   data: any;
-//   loading: boolean;
-//   error: any;
-// };
-
-const App = () => {
+const App = (): JSX.Element => {
   const { ticker, tickerName } = config;
   const [timeFrame, setTimeFrame] = useState<string>(timeFrames[0].value);
   const { data, loading, error } = useTickerData(ticker, timeFrame);

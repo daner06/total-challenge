@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Chart as GChart } from 'react-google-charts';
 
-interface IProps {
+interface ChartProps {
   title: string,
   serieLabel: string,
   data: {
@@ -9,13 +9,13 @@ interface IProps {
   },
 };
 
-const Chart: React.FC<IProps> = ({ title, serieLabel, data }) => {
+const Chart = ({ title, serieLabel, data }: ChartProps): JSX.Element => {
   const [chartData, setChartData] = useState<any>(null);
   const options = {
     title,
     curveType: 'function',
     legend: { position: 'bottom' },
-  };
+  } as const;
 
   useEffect(() => {
     const newData = data?.marketData?.map(d => {
@@ -28,7 +28,7 @@ const Chart: React.FC<IProps> = ({ title, serieLabel, data }) => {
       ['', serieLabel],
       ...newData || [],
     ]);
-  }, [data]);
+  }, [data, serieLabel]);
 
   return <GChart
     chartType="LineChart"
